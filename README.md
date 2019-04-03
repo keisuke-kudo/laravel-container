@@ -35,7 +35,8 @@ $ docker-compose exec php laravel new {project-name}
 
 3. docker-compose restart
 ```
-$ docker-compose restart
+$ docker-compose down
+$ docker-compose up -d
 ```
 
 4. Access https://localhost
