@@ -24,8 +24,5 @@ RUN apt-get update \
     && mv composer.phar /usr/local/bin/composer \
     && composer global require "laravel/installer"
 
-COPY php.ini /usr/local/etc/php/php.ini
-COPY xdebug.ini /usr/local/etc/php/conf.d/zz-xdebug.ini
-
 # 解放ポート
 EXPOSE 22 80 443
