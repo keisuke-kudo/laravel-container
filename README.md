@@ -13,7 +13,7 @@ $ docker-compose exec php laravel new {project-name}
 
 ```yml
   nginx:
-    build: ./nginx
+    image: nginx:latest
     container_name: "laravel-nginx"
     environment:
       TZ: "Asia/Tokyo"
