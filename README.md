@@ -12,6 +12,7 @@ $ docker-compose exec php laravel new {project-name}
 2. Edit docker-compose.yml
 
 ```yml
+services:
   nginx:
     image: nginx:latest
     container_name: "laravel-nginx"
@@ -21,6 +22,7 @@ $ docker-compose exec php laravel new {project-name}
       - "8080:80"
       - "443:443"
     volumes:
+       ...
 -      - ./project:/var/www/html
 +      - ./project/{project-name}:/var/www/html
   php:
@@ -29,8 +31,10 @@ $ docker-compose exec php laravel new {project-name}
     environment:
       TZ: "Asia/Tokyo"
     volumes:
+       ...
 -      - ./project:/var/www/html
 +      - ./project/{project-name}:/var/www/html
+  ...
 ```
 
 3. docker-compose restart
