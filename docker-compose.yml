@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  nginx:
+    build: ./nginx
+    container_name: "laravel-nginx"
+    environment:
+      TZ: "Asia/Tokyo"
+    ports:
+      - "8080:80"
+      - "443:443"
+    volumes:
+      - ./project:/var/www/html
+  php:
+    build: ./php
+    container_name: "laravel-php"
+    environment:
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./project:/var/www/html
+  mysql:
+    image: mysql:5.7
+    container_name: "laravel-mysql"
+    restart: always
+    environment:
+      MYSQL_DATABASE: root
+      MYSQL_ROOT_PASSWORD: root
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./mysql/conf.d:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/init.d:/docker-entrypoint-initdb.d
+    ports:
+      - "13306:3306"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: laravel-phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+    links:
+      - mysql:mysql
+    ports:
+      - "8000:80"
