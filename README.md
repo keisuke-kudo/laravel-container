@@ -11,7 +11,7 @@ $ docker-compose exec php laravel new {project-name}
 
 2. Edit docker-compose.yml
 
-```yml
+```diff
 services:
   nginx:
     build: ./nginx
@@ -46,5 +46,5 @@ $ docker-compose up -d
 4. Access https://localhost
 5. You will see Laravel's default screen
 
-Please enjoy laravel
-
+Please enjoy laravel!!  
+![](https://media.giphy.com/media/tIeCLkB8geYtW/giphy.gif)
