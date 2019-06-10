@@ -21,7 +21,8 @@ RUN apt-get update \
   && php composer-setup.php \
   && php -r "unlink('composer-setup.php');" \
   && mv composer.phar /usr/local/bin/composer \
-  && composer global require "laravel/installer"
+  && composer global require hirak/prestissimo \
+  && composer global require laravel/installer
 
 # 解放ポート
 EXPOSE 22 80 443
