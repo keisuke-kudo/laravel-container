@@ -3,41 +3,28 @@
 1. Create a project for Laravel(please wait for a while)
 
 ```
-$ mkdir project
+$ cp .env.example .env
 $ docker-compose build
 $ docker-compose up -d
-$ docker-compose exec php laravel new {project-name}
+$ docker-compose exec php laravel new example_project
+# or
+# git clone git@github.com:username/example-laravel ./project/example-laravel
 ```
 
-2. Edit docker-compose.yml
+2. Edit .env file
 
 ```diff
-services:
-  nginx:
-    build: ./nginx
-    container_name: "laravel-nginx"
-    environment:
-      TZ: "Asia/Tokyo"
-    ports:
-      - "8080:80"
-      - "443:443"
-    volumes:
-       ...
--      - ./project:/var/www/html
-+      - ./project/{project-name}:/var/www/html
-  php:
-    build: ./php
-    container_name: "laravel-php"
-    environment:
-      TZ: "Asia/Tokyo"
-    volumes:
-       ...
--      - ./project:/var/www/html
-+      - ./project/{project-name}:/var/www/html
-  ...
++ PROJECT_PATH=./project/example_project
+- PROJECT_PATH=./project
+# Please change the following if necessary
+DATABASE=root
+DATABASE_ROOT_PASS=root
+PMA_USER=root
+PMA_PASS=root
 ```
 
 3. docker-compose restart
+
 ```
 $ docker-compose down
 $ docker-compose up -d
